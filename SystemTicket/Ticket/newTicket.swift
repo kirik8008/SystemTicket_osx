@@ -69,7 +69,6 @@ class newTicket: NSViewController, NSTableViewDataSource, NSComboBoxDataSource {
                     self.cancelButton.title = "Закрыть"
                 }
             }
-        //self.dismissViewController(self)
         } else {self.resultText.stringValue = "Не все поля заполнены!"}
     }
     
