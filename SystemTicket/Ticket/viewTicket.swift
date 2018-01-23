@@ -44,6 +44,9 @@ class viewTicket: NSViewController {
         self.idTicket = UserDefaults.standard.object(forKey: "idTicket") as! String
         loadViewTicket()
     }
+    @IBAction func closeWindow(_ sender: Any) {
+        self.dismissViewController(self)
+    }
     
     @objc public func loadViewTicket()
     {
@@ -140,8 +143,9 @@ class viewTicket: NSViewController {
                 "userId": UserDefaults.standard.object(forKey: "id") as! String
             ]
             Alamofire.request("http://\(UserDefaults.standard.object(forKey: "ipserver") as! String)/alamofire.php?code=closeticket", method: .post, parameters: params)
+            self.dismiss(viewTicket.self)
         }
-        self.dismiss(viewTicket.self)
+        
     }
     
     

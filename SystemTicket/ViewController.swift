@@ -12,17 +12,19 @@ import SwiftyJSON
 
 class ViewController: NSViewController, NSTableViewDataSource, NSTabViewDelegate {
     @IBOutlet weak var viewTable: NSTableView!
-    @IBOutlet weak var clickTable: NSTextField!
+    @IBOutlet weak var clickTable: NSTextField! // количество активных заявок
     @IBOutlet weak var newTicketButton: NSButton! // кнопка Новая заявка
      //текущее время
     @IBOutlet weak var timeDataOnline: NSTextField!
     @IBOutlet weak var informationLabel: NSTextField! // информационная строка снизу таблицы
     
-    var countColum = -1
-    var timeTable = ["","",""]
+ //   var countColum = -1
+ //   var timeTable = ["","",""]
     var baseArray = [[String]]()
     var timeCheck = 1
     var timerGlobal = 10
+    var baseArrayCount = 0 // количество заявок
+    var xop = 0
     
 // --------------------------------------------------------------
     
@@ -99,8 +101,12 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTabViewDelegate
                     tempArray = [String]()
                     
                 }
-                self.viewTable.reloadData()
-                
+               if self.baseArray.count != self.baseArrayCount
+                {
+                    self.viewTable.reloadData()
+                    self.baseArrayCount = self.baseArray.count
+                }
+               
             }
         }
     }
@@ -115,18 +121,12 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTabViewDelegate
 
 // --------------------------------------------------------------
    //заполнение таблицы заявками
+var hight = -1
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any?
     {
-        
-        let xmk = baseArray[row].count - 1
-        if self.countColum == xmk { self.countColum = -1 } else { self.countColum += 1 }
-        if self.countColum == -1
-        {
-            self.timeTable = baseArray[row]
-            self.countColum = 0
-        }
-        if(self.timeTable == ["","",""]) { self.timeTable = baseArray[row] }
-        return timeTable[countColum]
+        hight += 1
+        let cell = hight % 3 // получаем остаток это может быть 0,1 или 2
+        return baseArray[row][cell]
     }
     
 // --------------------------------------------------------------

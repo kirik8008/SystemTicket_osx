@@ -28,7 +28,7 @@
 		<true/>
 	</dict>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2017 Smoks. All rights reserved.</string>
+	<string>BSD 3-Clause License. Copyright © 2017 Smotrov Kirill (Smoks). All rights reserved.</string>
 	<key>NSMainStoryboardFile</key>
 	<string>Main</string>
 	<key>NSPrincipalClass</key>
