@@ -1,11 +1,3 @@
-//
-//  Artwork.swift
-//  SystemTicket
-//
-//  Created by Admin on 18.01.2018.
-//  Copyright © 2018 Smoks. All rights reserved.
-//
-
 import Foundation
 import MapKit
 

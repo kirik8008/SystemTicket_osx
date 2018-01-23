@@ -14,16 +14,13 @@ class newTicket: NSViewController, NSTableViewDataSource, NSComboBoxDataSource {
     
     let staticStatus = ["Новая","Закрытая"]
     var baseArray = [[String]]()
-    var countColum = -1
-    var timeTable = ["","",""]
     var countTable = 0
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     } 
-    @IBAction func dismiss(_ sender: Any) { // кнопка отмены
-        self.dismissViewController(self)
-    }
+    
+    @IBOutlet weak var tableView: NSTableView!
     @IBOutlet weak var sendButton: NSButton!
     @IBOutlet weak var cancelButton: NSButton!
     @IBOutlet weak var viewTable: NSTableView!
@@ -34,12 +31,19 @@ class newTicket: NSViewController, NSTableViewDataSource, NSComboBoxDataSource {
     @IBOutlet weak var authorTicket: NSComboBox! // автор заявки
     @IBOutlet weak var themeTicket: NSComboBox! // тема заявки
     @IBOutlet weak var textTicket: NSTextField! // текст заявки
-    @IBOutlet weak var statusTicket: NSComboBox! // статус заявки
+    @IBOutlet weak var statusTicket: NSComboBox!// статус заявки
     @IBOutlet weak var authorFio: NSTextField! // фио сотрудника
     @IBOutlet weak var telegram: NSButton!
     @IBOutlet weak var teamviewer: NSTextField!
     @IBOutlet weak var resultText: NSTextField!
     
+ // --------------------------------------------------------------
+    
+    @IBAction func dismiss(_ sender: Any) { // кнопка отмены
+        self.dismissViewController(self)
+    }
+    
+ // --------------------------------------------------------------
     
     @IBAction func sendTicket(_ sender: Any) { // отправка заявки
         var error = 0
@@ -72,10 +76,13 @@ class newTicket: NSViewController, NSTableViewDataSource, NSComboBoxDataSource {
         } else {self.resultText.stringValue = "Не все поля заполнены!"}
     }
     
+// --------------------------------------------------------------
+    
     @IBAction func search(_ sender: Any) { // кнопка поиск
         searchUser()
-        //if contract.stringValue.isEmpty { } else {sendButton.isEnabled = true}
     }
+    
+// --------------------------------------------------------------
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,7 +92,9 @@ class newTicket: NSViewController, NSTableViewDataSource, NSComboBoxDataSource {
         printTheme()
     }
     
-      @objc public func printTheme()
+// --------------------------------------------------------------
+    
+      @objc public func printTheme() // темы заявок
     {
         Alamofire.request("http://\(UserDefaults.standard.object(forKey: "ipserver") as! String)/alamofire.php?code=themeticket").responseJSON { response in
             if let json = response.result.value {
@@ -101,6 +110,8 @@ class newTicket: NSViewController, NSTableViewDataSource, NSComboBoxDataSource {
             }
         }
     }
+    
+// --------------------------------------------------------------
    
     @objc public func searchUser() // отправка POST для поиска пользователя
     {
@@ -139,7 +150,9 @@ class newTicket: NSViewController, NSTableViewDataSource, NSComboBoxDataSource {
         }
     }
     
-    @objc public func searchTicketuser()
+// --------------------------------------------------------------
+    
+    @objc public func searchTicketuser() // поиск заявок пользователя
     {
         let params: [String: Any] = [
             "fiosearch": fio.stringValue,
@@ -172,22 +185,21 @@ class newTicket: NSViewController, NSTableViewDataSource, NSComboBoxDataSource {
         }
     }
     
+// --------------------------------------------------------------
+    
     public func numberOfRows(in tableView: NSTableView) -> Int
     {
         return self.countTable
     }
+    
+// --------------------------------------------------------------
 
+var counter = -1
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any?
     {
-        let xmk = baseArray[row].count - 1
-        if self.countColum == xmk { self.countColum = -1 } else { self.countColum += 1 }
-        if self.countColum == -1
-        {
-            self.timeTable = baseArray[row]
-            self.countColum = 0
-        }
-        if(self.timeTable == ["","",""]) { self.timeTable = baseArray[row] }
-        return timeTable[countColum]
+        counter += 1
+        let cell = counter % 3 // получаем остаток это может быть 0,1 или 2
+        return baseArray[row][cell]
     }
     
     

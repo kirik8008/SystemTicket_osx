@@ -34,7 +34,6 @@ class Settings: NSViewController {
             self.name.stringValue = UserDefaults.standard.object(forKey: "name") as! String
             self.surname.stringValue = UserDefaults.standard.object(forKey: "surname") as! String
         }
-        // Do view setup here.
     }
     
 // ---------------------------------------------------

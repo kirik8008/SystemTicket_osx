@@ -1415,7 +1415,7 @@ Gw
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u3I-4e-Zof">
-                                <rect key="frame" x="24" y="209" width="91" height="17"/>
+                                <rect key="frame" x="20" y="209" width="91" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Автор заявки" id="Llq-f8-DSy">
                                     <font key="font" metaFont="systemBold"/>
@@ -1431,31 +1431,6 @@ Gw
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
-                            </textField>
-                            <comboBox verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6tW-oJ-HVD">
-                                <rect key="frame" x="393" y="202" width="140" height="26"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="brQ-om-eDf">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </comboBoxCell>
-                                <connections>
-                                    <action selector="themeActive:" target="DGz-31-Qcd" id="Jnr-wg-IFB"/>
-                                    <outlet property="dataSource" destination="DGz-31-Qcd" id="9UJ-2g-NI4"/>
-                                </connections>
-                            </comboBox>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AY5-el-tbh">
-                                <rect key="frame" x="121" y="88" width="409" height="112"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="QYT-i1-ynB">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                                <connections>
-                                    <action selector="textActive:" target="DGz-31-Qcd" id="pwj-lf-X4p"/>
-                                </connections>
                             </textField>
                             <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="86n-rx-TZU">
                                 <rect key="frame" x="0.0" y="479" width="550" height="5"/>
@@ -1479,17 +1454,8 @@ Gw
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JGk-Dc-0GV">
-                                <rect key="frame" x="12" y="59" width="100" height="17"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Статус заявки" id="NhG-je-Lft">
-                                    <font key="font" metaFont="systemBold"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DXM-CK-LVN">
-                                <rect key="frame" x="24" y="183" width="92" height="17"/>
+                                <rect key="frame" x="20" y="183" width="92" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Текст заявки" id="prG-zw-OdS">
                                     <font key="font" metaFont="systemBold"/>
@@ -1497,19 +1463,6 @@ Gw
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <comboBox identifier="status" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ODT-0r-PM6">
-                                <rect key="frame" x="121" y="53" width="99" height="26"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="xAy-Wy-qy2">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </comboBoxCell>
-                                <connections>
-                                    <action selector="statusActive:" target="DGz-31-Qcd" id="vkx-IV-4W7"/>
-                                    <outlet property="dataSource" destination="DGz-31-Qcd" id="VVK-U5-lwG"/>
-                                </connections>
-                            </comboBox>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sOU-cA-aSt">
                                 <rect key="frame" x="240" y="57" width="292" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -1560,7 +1513,7 @@ DQ
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Gn-XS-SAb">
-                                <rect key="frame" x="14" y="20" width="297" height="17"/>
+                                <rect key="frame" x="20" y="20" width="291" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" id="4dX-YH-UQ1">
                                     <font key="font" metaFont="system"/>
@@ -1569,10 +1522,46 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sXH-Ct-TY4">
-                                <rect key="frame" x="121" y="209" width="219" height="17"/>
+                                <rect key="frame" x="120" y="209" width="219" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" id="DJK-RZ-jO1">
                                     <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <comboBox verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P5i-g6-gO9">
+                                <rect key="frame" x="390" y="203" width="143" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="q8q-Mb-F6Y">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </comboBoxCell>
+                            </comboBox>
+                            <comboBox verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hNv-dF-ON7">
+                                <rect key="frame" x="122" y="53" width="115" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" title="Новая" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="pXz-Ng-XoM">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </comboBoxCell>
+                            </comboBox>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0cJ-JD-WCN">
+                                <rect key="frame" x="22" y="84" width="508" height="91"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="FmB-fS-hYq">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JGk-Dc-0GV">
+                                <rect key="frame" x="20" y="60" width="100" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Статус заявки" id="NhG-je-Lft">
+                                    <font key="font" metaFont="systemBold"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -1587,16 +1576,13 @@ DQ
                         <outlet property="fio" destination="jlL-ap-rst" id="KEQ-fG-czd"/>
                         <outlet property="resultText" destination="8Gn-XS-SAb" id="QkU-ip-7f9"/>
                         <outlet property="sendButton" destination="PjD-tz-fZE" id="p7y-Dh-bxA"/>
-                        <outlet property="status" destination="ODT-0r-PM6" id="sDi-IU-cXL"/>
-                        <outlet property="statusTicket" destination="ODT-0r-PM6" id="fgQ-2q-06t"/>
-                        <outlet property="statusx" destination="ODT-0r-PM6" id="1gd-nz-PaK"/>
-                        <outlet property="tableView" destination="Efh-6W-gBR" id="suU-Py-p9d"/>
+                        <outlet property="statusTicket" destination="hNv-dF-ON7" id="jfP-fB-S0C"/>
+                        <outlet property="tableView" destination="Efh-6W-gBR" id="mP4-C8-03b"/>
                         <outlet property="teamviewer" destination="VpG-cU-BYM" id="1M6-rQ-43X"/>
                         <outlet property="telegram" destination="sOU-cA-aSt" id="eBl-ag-gLc"/>
                         <outlet property="telephone" destination="So5-0y-XWL" id="qd2-ta-JeM"/>
-                        <outlet property="textTicket" destination="AY5-el-tbh" id="VSL-j5-7HK"/>
-                        <outlet property="theme" destination="6tW-oJ-HVD" id="OgM-Bz-IQw"/>
-                        <outlet property="themeTicket" destination="6tW-oJ-HVD" id="qv2-92-pCH"/>
+                        <outlet property="textTicket" destination="0cJ-JD-WCN" id="3CT-HP-2th"/>
+                        <outlet property="themeTicket" destination="P5i-g6-gO9" id="pk3-b1-heq"/>
                         <outlet property="viewTable" destination="Efh-6W-gBR" id="qvp-lW-mGN"/>
                     </connections>
                 </viewController>

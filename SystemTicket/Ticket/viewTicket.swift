@@ -38,15 +38,21 @@ class viewTicket: NSViewController {
     var locationArray: [Double] = []
     let regionRadius: CLLocationDistance = 1000
     
+// --------------------------------------------------------------
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.idTicket = UserDefaults.standard.object(forKey: "idTicket") as! String
         loadViewTicket()
     }
+
+// --------------------------------------------------------------
+    
     @IBAction func closeWindow(_ sender: Any) {
         self.dismissViewController(self)
     }
+    
+// --------------------------------------------------------------
     
     @objc public func loadViewTicket()
     {
@@ -122,6 +128,8 @@ class viewTicket: NSViewController {
         }
     }
     
+// --------------------------------------------------------------
+    
     func centerMapOnLocation(location: CLLocation, idTicketMaps: String) {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,
                                                                   regionRadius, regionRadius)
@@ -132,6 +140,9 @@ class viewTicket: NSViewController {
             coordinate: CLLocationCoordinate2D(latitude: self.locationOne, longitude: self.locationTwo))
         maps.addAnnotation(artwork)
     }
+    
+// --------------------------------------------------------------
+    
     @IBAction func closeTicket(_ sender: Any) {
         if textCloseTicket.stringValue.isEmpty
         {labelCloseTicket.stringValue = "Нужно заполнить поле!"}
@@ -147,6 +158,8 @@ class viewTicket: NSViewController {
         }
         
     }
+    
+// --------------------------------------------------------------
     
     
     

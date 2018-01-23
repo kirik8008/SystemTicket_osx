@@ -18,13 +18,10 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTabViewDelegate
     @IBOutlet weak var timeDataOnline: NSTextField!
     @IBOutlet weak var informationLabel: NSTextField! // информационная строка снизу таблицы
     
- //   var countColum = -1
- //   var timeTable = ["","",""]
     var baseArray = [[String]]()
     var timeCheck = 1
     var timerGlobal = 10
     var baseArrayCount = 0 // количество заявок
-    var xop = 0
     
 // --------------------------------------------------------------
     
