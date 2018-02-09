@@ -8,14 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		84062A6E1FF22A6500417969 /* newTicket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84062A6D1FF22A6500417969 /* newTicket.swift */; };
+		848C137D202C8B010099B798 /* Messenger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848C137C202C8B010099B798 /* Messenger.swift */; };
+		848C1388202C8E840099B798 /* Vk.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 848C1383202C8E830099B798 /* Vk.mp3 */; };
+		848C1389202C8E840099B798 /* Bamboo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 848C1384202C8E830099B798 /* Bamboo.mp3 */; };
+		848C138A202C8E840099B798 /* Blum.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 848C1385202C8E840099B798 /* Blum.mp3 */; };
+		848C138B202C8E840099B798 /* Keys.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 848C1386202C8E840099B798 /* Keys.mp3 */; };
+		848C138C202C8E840099B798 /* Note.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 848C1387202C8E840099B798 /* Note.mp3 */; };
+		848C138E202C9A7C0099B798 /* NewTicket.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 848C138D202C9A7C0099B798 /* NewTicket.mp3 */; };
 		84A2886F201753860047C8CD /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 84A2886E201753860047C8CD /* LICENSE */; };
 		84E0E3CD1FB9B1D000EAD800 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E0E3CC1FB9B1D000EAD800 /* AppDelegate.swift */; };
 		84E0E3CF1FB9B1D000EAD800 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E0E3CE1FB9B1D000EAD800 /* ViewController.swift */; };
 		84E0E3D11FB9B1D000EAD800 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84E0E3D01FB9B1D000EAD800 /* Assets.xcassets */; };
 		84E0E3D41FB9B1D000EAD800 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84E0E3D21FB9B1D000EAD800 /* Main.storyboard */; };
 		84E0E3DD1FB9B1FE00EAD800 /* podfile in Resources */ = {isa = PBXBuildFile; fileRef = 84E0E3DC1FB9B1FE00EAD800 /* podfile */; };
-		84E0E3E21FB9B5F900EAD800 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84E0E3E41FB9B5F900EAD800 /* Alamofire.framework */; };
-		84E0E3E31FB9B5F900EAD800 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84E0E3E51FB9B5F900EAD800 /* SwiftyJSON.framework */; };
 		84F254542010D9BF00E5C8B8 /* viewTicket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F254532010D9BF00E5C8B8 /* viewTicket.swift */; };
 		84F254562010E08D00E5C8B8 /* Artwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F254552010E08D00E5C8B8 /* Artwork.swift */; };
 		84F2545A2011DB3600E5C8B8 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F254592011DB3600E5C8B8 /* Settings.swift */; };
@@ -26,6 +31,15 @@
 		036D3E0C31FBB59834D1EAC0 /* Pods-SystemTicket.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SystemTicket.release.xcconfig"; path = "Pods/Target Support Files/Pods-SystemTicket/Pods-SystemTicket.release.xcconfig"; sourceTree = "<group>"; };
 		1F3F35D1773F12CAD23E8356 /* Pods_SystemTicket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SystemTicket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84062A6D1FF22A6500417969 /* newTicket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newTicket.swift; sourceTree = "<group>"; };
+		848C137C202C8B010099B798 /* Messenger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Messenger.swift; sourceTree = "<group>"; };
+		848C1380202C8D160099B798 /* SocketIO.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SocketIO.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		848C1381202C8D160099B798 /* SwiftySound.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftySound.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		848C1383202C8E830099B798 /* Vk.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Vk.mp3; sourceTree = "<group>"; };
+		848C1384202C8E830099B798 /* Bamboo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Bamboo.mp3; sourceTree = "<group>"; };
+		848C1385202C8E840099B798 /* Blum.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Blum.mp3; sourceTree = "<group>"; };
+		848C1386202C8E840099B798 /* Keys.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Keys.mp3; sourceTree = "<group>"; };
+		848C1387202C8E840099B798 /* Note.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Note.mp3; sourceTree = "<group>"; };
+		848C138D202C9A7C0099B798 /* NewTicket.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = NewTicket.mp3; sourceTree = "<group>"; };
 		84A2886E201753860047C8CD /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		84E0E3C91FB9B1D000EAD800 /* SystemTicket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SystemTicket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84E0E3CC1FB9B1D000EAD800 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -48,8 +62,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84E0E3E21FB9B5F900EAD800 /* Alamofire.framework in Frameworks */,
-				84E0E3E31FB9B5F900EAD800 /* SwiftyJSON.framework in Frameworks */,
 				EF42FE507368E51478AF9D13 /* Pods_SystemTicket.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -60,6 +72,8 @@
 		0F3D9A13D5808C09B9F08966 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				848C1380202C8D160099B798 /* SocketIO.framework */,
+				848C1381202C8D160099B798 /* SwiftySound.framework */,
 				84E0E3E41FB9B5F900EAD800 /* Alamofire.framework */,
 				84E0E3E51FB9B5F900EAD800 /* SwiftyJSON.framework */,
 				1F3F35D1773F12CAD23E8356 /* Pods_SystemTicket.framework */,
@@ -75,6 +89,27 @@
 				84F254552010E08D00E5C8B8 /* Artwork.swift */,
 			);
 			path = Ticket;
+			sourceTree = "<group>";
+		};
+		848C137B202C8A910099B798 /* Addition */ = {
+			isa = PBXGroup;
+			children = (
+				848C137C202C8B010099B798 /* Messenger.swift */,
+			);
+			path = Addition;
+			sourceTree = "<group>";
+		};
+		848C1382202C8E540099B798 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				848C138D202C9A7C0099B798 /* NewTicket.mp3 */,
+				848C1384202C8E830099B798 /* Bamboo.mp3 */,
+				848C1385202C8E840099B798 /* Blum.mp3 */,
+				848C1386202C8E840099B798 /* Keys.mp3 */,
+				848C1387202C8E840099B798 /* Note.mp3 */,
+				848C1383202C8E830099B798 /* Vk.mp3 */,
+			);
+			path = Sounds;
 			sourceTree = "<group>";
 		};
 		84E0E3C01FB9B1D000EAD800 = {
@@ -100,6 +135,8 @@
 		84E0E3CB1FB9B1D000EAD800 /* SystemTicket */ = {
 			isa = PBXGroup;
 			children = (
+				848C1382202C8E540099B798 /* Sounds */,
+				848C137B202C8A910099B798 /* Addition */,
 				84F254582011DB1100E5C8B8 /* Settings */,
 				84062A6C1FF22A4B00417969 /* Ticket */,
 				84E0E3CC1FB9B1D000EAD800 /* AppDelegate.swift */,
@@ -191,9 +228,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				848C138C202C8E840099B798 /* Note.mp3 in Resources */,
+				848C1388202C8E840099B798 /* Vk.mp3 in Resources */,
 				84E0E3DD1FB9B1FE00EAD800 /* podfile in Resources */,
+				848C138E202C9A7C0099B798 /* NewTicket.mp3 in Resources */,
+				848C138B202C8E840099B798 /* Keys.mp3 in Resources */,
+				848C138A202C8E840099B798 /* Blum.mp3 in Resources */,
 				84E0E3D11FB9B1D000EAD800 /* Assets.xcassets in Resources */,
 				84A2886F201753860047C8CD /* LICENSE in Resources */,
+				848C1389202C8E840099B798 /* Bamboo.mp3 in Resources */,
 				84E0E3D41FB9B1D000EAD800 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -224,12 +267,18 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-SystemTicket/Pods-SystemTicket-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Socket.IO-Client-Swift/SocketIO.framework",
+				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftySound/SwiftySound.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SocketIO.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftySound.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -267,6 +316,7 @@
 				84E0E3CD1FB9B1D000EAD800 /* AppDelegate.swift in Sources */,
 				84F254542010D9BF00E5C8B8 /* viewTicket.swift in Sources */,
 				84062A6E1FF22A6500417969 /* newTicket.swift in Sources */,
+				848C137D202C8B010099B798 /* Messenger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

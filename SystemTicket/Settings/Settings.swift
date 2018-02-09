@@ -9,6 +9,7 @@
 import Cocoa
 import Alamofire
 import SwiftyJSON
+import SwiftySound
 
 class Settings: NSViewController {
     
@@ -20,9 +21,15 @@ class Settings: NSViewController {
     @IBOutlet weak var authentication: NSButton! // кнопка вход
     @IBOutlet weak var saveSettings: NSButton! // кнопка сохранить
     @IBOutlet weak var updateTicket: NSComboBoxCell! // combobox с временем обновления таблицы
-
+    @IBOutlet weak var messangerServer: NSTextField! // сервер мессенджера
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        if UserDefaults.standard.object(forKey: "ipMessanger") == nil
+        {
+            UserDefaults.standard.set("192.168.1.200:8008", forKey: "ipMessanger")
+        }
+        messangerServer.stringValue = UserDefaults.standard.object(forKey: "ipMessanger") as! String
         self.ipServer.stringValue = UserDefaults.standard.object(forKey: "ipserver") as! String
         let timeUpdate:Int = UserDefaults.standard.object(forKey: "timeupdate") as! Int
         self.updateTicket.title = "\(timeUpdate) с."
@@ -40,6 +47,7 @@ class Settings: NSViewController {
     //кнопка сохранить
     @IBAction func save(_ sender: Any) {
         UserDefaults.standard.set(self.ipServer.stringValue, forKey: "ipserver")
+        UserDefaults.standard.set(self.messangerServer.stringValue, forKey: "ipMessanger")
        switch self.updateTicket.stringValue {
         case "5 с.": UserDefaults.standard.set(5, forKey: "timeupdate")
         case "10 с.": UserDefaults.standard.set(10, forKey: "timeupdate")

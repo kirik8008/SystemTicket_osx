@@ -28,7 +28,7 @@ class newTicket: NSViewController, NSTableViewDataSource, NSComboBoxDataSource {
     @IBOutlet weak var contract: NSTextField! // номер договора
     @IBOutlet weak var adress: NSTextField! // адрес пользователя
     @IBOutlet weak var telephone: NSTextField! // телефоны пользователя
-    @IBOutlet weak var authorTicket: NSComboBox! // автор заявки
+  //  @IBOutlet weak var authorTicket: NSComboBox! // автор заявки
     @IBOutlet weak var themeTicket: NSComboBox! // тема заявки
     @IBOutlet weak var textTicket: NSTextField! // текст заявки
     @IBOutlet weak var statusTicket: NSComboBox!// статус заявки

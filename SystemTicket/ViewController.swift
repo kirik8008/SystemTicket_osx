@@ -9,14 +9,20 @@
 import Cocoa
 import Alamofire
 import SwiftyJSON
+import SwiftySound
 
 class ViewController: NSViewController, NSTableViewDataSource, NSTabViewDelegate {
+    //@IBOutlet weak var viewTable: NSTableView!
     @IBOutlet weak var viewTable: NSTableView!
-    @IBOutlet weak var clickTable: NSTextField! // количество активных заявок
-    @IBOutlet weak var newTicketButton: NSButton! // кнопка Новая заявка
-     //текущее время
+   // @IBOutlet weak var clickTable: NSTextField! // количество активных заявок
+    @IBOutlet weak var clickTable: NSTextField!
+    //@IBOutlet weak var newTicketButton: NSButton! // кнопка Новая заявка
+    @IBOutlet weak var newTicketButton: NSButton!
+    //текущее время
+   // @IBOutlet weak var timeDataOnline: NSTextField!
     @IBOutlet weak var timeDataOnline: NSTextField!
-    @IBOutlet weak var informationLabel: NSTextField! // информационная строка снизу таблицы
+    //@IBOutlet weak var informationLabel: NSTextField! // информационная строка снизу таблицы
+    @IBOutlet weak var informationLabel: NSTextField!
     
     var baseArray = [[String]]()
     var timeCheck = 1
@@ -27,7 +33,10 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTabViewDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if UserDefaults.standard.object(forKey: "ipserver") == nil {UserDefaults.standard.set("192.168.0.1", forKey: "ipserver")} // в случае если запуск первый и в настройках ничего нет
+        if UserDefaults.standard.object(forKey: "ipserver") == nil
+            {
+            UserDefaults.standard.set("192.168.0.1", forKey: "ipserver")
+        } // в случае если запуск первый и в настройках ничего нет
         if UserDefaults.standard.object(forKey: "timeupdate") == nil { UserDefaults.standard.set(10, forKey: "timeupdate") }else
         {
             timerGlobal = UserDefaults.standard.object(forKey: "timeupdate") as! Int
@@ -101,6 +110,7 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTabViewDelegate
                if self.baseArray.count != self.baseArrayCount
                 {
                     self.viewTable.reloadData()
+                    Sound.play(file: "NewTicket", fileExtension: "mp3", numberOfLoops: 0)
                     self.baseArrayCount = self.baseArray.count
                 }
                
