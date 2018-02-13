@@ -10,10 +10,36 @@ import Cocoa
 import SwiftyJSON
 import SwiftySound
 import SocketIO
+import Sodium
 
-class Messenger: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
-    let manager = SocketManager(socketURL: URL(string: "http://\(UserDefaults.standard.object(forKey: "ipMessanger") as! String)")!, config: [.log(true), .compress])
+extension String {
+    func toData() -> Data? {
+        return self.data(using: .utf8, allowLossyConversion: false)
+    }
+}
+
+extension Dictionary {
+    func toData() -> Data? {
+        return NSKeyedArchiver.archivedData(withRootObject: self) as Data?
+    }
+}
+
+extension Data {
+    func toString() -> String? {
+        return String(data: self, encoding: .utf8)
+    }
+    
+    func toDictionary() -> [String: AnyObject]? {
+        return NSKeyedUnarchiver.unarchiveObject(with: self) as? [String: AnyObject]
+    }
+}
+    let sodium = Sodium()
+
+class Messenger: NSViewController, NSTableViewDataSource, NSTableViewDelegate,NSTextFieldDelegate {
+    var manager = SocketManager(socketURL: URL(string: "http://192.168.1.200:8008")!, config: [.log(true), .compress])
     var tableUser = [[String]]() // пользователи активные
+    let KeyPair = sodium.box.keyPair()! //мой ключ
+    var publicKey:Any = ""
     @IBOutlet weak var usersActive: NSTableView! // таблица с сотрудниками
     @IBOutlet weak var sid: NSTextField! // SID соединения
     @IBOutlet weak var userId: NSTextField! // id пользователя
@@ -29,16 +55,25 @@ class Messenger: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        if UserDefaults.standard.object(forKey: "authentication") != nil
+        {
+        if UserDefaults.standard.object(forKey: "ipMessanger") == nil
+        {
+            UserDefaults.standard.set("192.168.1.200:8008", forKey: "ipMessanger")
+            window.string = "Мессенджер ожидает правильных настроек! Зайди в настройки и укажи правильный сервер и перезагрузи приложение!"
+        }
+        manager = SocketManager(socketURL: URL(string: "http://\(UserDefaults.standard.object(forKey: "ipMessanger") as! String)")!, config: [.log(true), .compress])
         usersActive.target = self
         usersActive.action = #selector(userSelection(_:))
         UserDefaults.standard.set("", forKey: "idSocket")
         userId.stringValue = UserDefaults.standard.object(forKey: "id") as! String
         userFio.stringValue = UserDefaults.standard.object(forKey: "fio") as! String
-        
         let socket = manager.defaultSocket
         socket.on(clientEvent: .connect) {data, ack in
             self.sid.stringValue = socket.sid
             UserDefaults.standard.set(socket.sid, forKey: "idSocket")
+            
             socket.emit("pong", [UserDefaults.standard.object(forKey: "id"),UserDefaults.standard.object(forKey: "fio"),UserDefaults.standard.object(forKey: "idSocket")])
             
             socket.on("userlist") {data, ack in
@@ -49,9 +84,31 @@ class Messenger: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
                 self.informationString.stringValue = "\(data)"
             }
             
+            
             socket.on("message") {data, ack in
-                self.message(data: data)
+                /* Получение сообщения:
+                 |0: Дата и время |1:получатель |2:отправитель |3:имя отправителя |4: зашифрованное сообщение |5: публичный ключ|
+                */
+                let encryptionText:Data = data[4] as! Data
+                let sendpublickey:Data = data[5] as! Data
+                let text = self.decryptionMessage(encryptedMessage: encryptionText, publicSendKey: sendpublickey) // получаем текст
+                let objData = [data[0] as! String, data[1], data[2],data[3] as! String, text] // собираем массив
+                self.message(data:objData) // передаем в обработчик
             }
+            
+            //получение публичного ключа
+            socket.on("sendpublickey") {data, ack in
+                self.publicKey = data[1] as! Data
+            }
+            
+            socket.on("publickey"){data, ack in
+                socket.emit("sendpublickey", [data[0],self.KeyPair.publicKey])
+            }
+            
+            socket.on("prints") {data, ack in
+                self.userPrints(data: data)
+            }
+            
         }
         
         socket.on(clientEvent: .reconnect) { (data, ack) in
@@ -68,8 +125,70 @@ class Messenger: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
         socket.on(clientEvent: .ping) { (data, ack) in
             socket.emit("pong", [UserDefaults.standard.object(forKey: "id"),UserDefaults.standard.object(forKey: "fio"),UserDefaults.standard.object(forKey: "idSocket")])
         }
-        
         socket.connect()
+        _ = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.cleanInformation), userInfo: nil, repeats: true)
+            
+        } else { window.string = "Вы не прошли процедуру ау­тен­ти­фи­ка­ции, в связи с чем вам будут недоступны некоторые функции. Выполните вход в акаунт СистемыЗаявок сейчас, открыв Настройки и раздел Аутентификация. При успешной Аутентификации перезагрузите приложение!" }
+
+    }
+    
+//--------------------------------------------------------------
+    //действие при вводе текста
+    @objc override func controlTextDidChange(_ obj: Notification) {
+        let socket = manager.defaultSocket
+        if channel.stringValue != "Общий канал"
+        {
+            if UserDefaults.standard.object(forKey: "activeChat") != nil
+            {
+                socket.emit("prints",  [UserDefaults.standard.object(forKey: "id"),UserDefaults.standard.object(forKey: "fio"),UserDefaults.standard.object(forKey: "activeChat")])
+            }
+        }
+    }
+ //--------------------------------------------------------------
+    //шифрование
+    public func encryptionMessage(text:String)
+    {
+        let socket = manager.defaultSocket
+        let message = text.data(using:.utf8)!
+        let encryptedMessage: Data =
+            sodium.box.seal(message: message,
+                            recipientPublicKey: self.publicKey as! Box.PublicKey, // выбираем полученный публичный ключ
+                            senderSecretKey: KeyPair.secretKey)!
+
+       let messagess = [dateTimeFunc(),UserDefaults.standard.object(forKey: "activeChat"),UserDefaults.standard.object(forKey: "id"),UserDefaults.standard.object(forKey: "fio"),encryptedMessage,KeyPair.publicKey]
+        socket.emit("message", messagess)
+    }
+    
+//--------------------------------------------------------------
+    //шифрование
+    public func decryptionMessage(encryptedMessage: Data, publicSendKey:Data) -> String
+    {
+        
+        let messageVerified =
+            sodium.box.open(nonceAndAuthenticatedCipherText: encryptedMessage,
+                            senderPublicKey: publicSendKey,
+                            recipientSecretKey: KeyPair.secretKey)
+        let result = messageVerified!.toString() as! String
+        return result
+    }
+    
+//--------------------------------------------------------------
+    
+    @objc func cleanInformation()
+    {
+        self.informationString.stringValue = "Информационная строка"
+    }
+    
+//--------------------------------------------------------------
+    //получение от сервра что пользователь печатает
+    func userPrints(data:Array<Any>)
+    {
+        let id:String = data[2] as! String
+        if id == UserDefaults.standard.object(forKey: "id") as! String
+        {
+            self.informationString.stringValue = "\(data[1]) печатает..."
+        }
+
     }
     
 //--------------------------------------------------------------
@@ -92,23 +211,27 @@ class Messenger: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
     
 //--------------------------------------------------------------
     //отправка и прием сообщений
-    func message(data:Any)
+    func message(data:Array<Any>)
     {
-        let json = JSON(data)
-        let id:String = "\(json[0][1])"
+        let id:String = data[1] as! String
         if id == UserDefaults.standard.object(forKey: "id") as! String
         {
+            self.cleanInformation()
             Sound.play(file: "Blum", fileExtension: "mp3", numberOfLoops: 0)
-            if self.channel.stringValue == "\(json[0][3])"
+            if self.channel.stringValue == "\(data[3])"
             {
-                print(tableUser)
-                self.window.string = self.window.string + "\(json[0][0]) 💬 -> \(json[0][4]) \n"
+                self.window.string = self.window.string + "\(data[0]) 💬 -> \(data[4]) \n"
                 self.saveMessage()
             } else
             {
-                let textInSave = UserDefaults.standard.object(forKey: "activeUserChat\(json[0][2])") as! String
-                let savingText = textInSave + "\(json[0][0]) 💬 -> \(json[0][4]) \n"
-                UserDefaults.standard.set(savingText, forKey: "activeUserChat\(json[0][2])")
+                if UserDefaults.standard.object(forKey: "activeUserChat\(data[2])") == nil
+                {
+                    UserDefaults.standard.set("", forKey: "activeUserChat\(data[2])")
+                }
+                let textInSave = UserDefaults.standard.object(forKey: "activeUserChat\(data[2])") as! String
+                let savingText = textInSave + "\(data[0]) 💬 -> \(data[4]) \n"
+                UserDefaults.standard.set(savingText, forKey: "activeUserChat\(data[2])")
+                
             }
         }
     }
@@ -119,11 +242,7 @@ class Messenger: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
         if channel.stringValue == "Общий канал" { window.string = "Нужно выбрать пользователя перед тем как что то отправлять!" }else{
             if text.stringValue != "" && UserDefaults.standard.object(forKey: "activeChat") != nil
             {
-                let socket = manager.defaultSocket
-                let message = [dateTimeFunc(),UserDefaults.standard.object(forKey: "activeChat"),UserDefaults.standard.object(forKey: "id"),UserDefaults.standard.object(forKey: "fio"),text.stringValue]
-                //socket.emit("message", message)
-                socket.emit("message", message)
-                //window.string = dateTimeFunc() + " \(fio) -> " + text.stringValue + "\n" + window.string
+                self.encryptionMessage(text: text.stringValue)
                 window.string = window.string + dateTimeFunc() + " Я -> " + text.stringValue + "\n"
                 text.stringValue = ""
                 saveMessage()
@@ -148,7 +267,9 @@ class Messenger: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
     @objc public func userSelection(_ sender:AnyObject)
     {
         if usersActive.selectedRow != -1 {
-            // print(tableUser[usersActive.selectedRow])
+            let socket = manager.defaultSocket
+            socket.emit("publickey", [tableUser[usersActive.selectedRow][1],UserDefaults.standard.object(forKey: "id")])
+            text.stringValue = ""
             UserDefaults.standard.set(tableUser[usersActive.selectedRow][1], forKey: "activeChat")
             channel.stringValue = tableUser[usersActive.selectedRow][0]
             let activeUserChat = "activeUserChat\(tableUser[usersActive.selectedRow][1])"
@@ -160,10 +281,14 @@ class Messenger: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
                 
             }else
             {
+                text.stringValue = ""
                 UserDefaults.standard.set("", forKey: "activeUserChat\(tableUser[usersActive.selectedRow][1])")
                 window.string = ""
             }
-            //saveMessage()
+        }else {
+            channel.stringValue = "Общий канал"
+            UserDefaults.standard.removeObject(forKey: "activeChat")
+            window.string = ""
         }
     }
     
@@ -222,4 +347,6 @@ class Messenger: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
     }
     
     //--------------------------------------------------------------
+    
+
 }

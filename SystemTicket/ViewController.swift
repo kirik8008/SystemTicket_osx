@@ -23,6 +23,13 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTabViewDelegate
     @IBOutlet weak var timeDataOnline: NSTextField!
     //@IBOutlet weak var informationLabel: NSTextField! // информационная строка снизу таблицы
     @IBOutlet weak var informationLabel: NSTextField!
+    @IBOutlet weak var boxFio: NSTextField! // блок пользователь
+    @IBOutlet weak var boxDogovor: NSTextField! // блок договор
+    @IBOutlet weak var boxAddress: NSTextField! //блок адрес
+    @IBOutlet weak var boxPhone: NSTextField! //блок телефон
+    @IBOutlet weak var boxTicket: NSTextField! //блок текст заявки
+    
+    
     
     var baseArray = [[String]]()
     var timeCheck = 1
@@ -44,6 +51,7 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTabViewDelegate
         requestsystemticket() // для первого отображения
         viewTable.target = self
         viewTable.doubleAction = #selector(tableViewDoubleClick(_:))
+        viewTable.action = #selector(viewInformationTicket(_:))
         _ = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.check), userInfo: nil, repeats: true)
         
     }
@@ -102,6 +110,15 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTabViewDelegate
                     if let userPri = jsons[xCode][2].string {
                         tempArray.append(userPri)
                     }
+                    if let userAddress = jsons[xCode][3].string {
+                        tempArray.append(userAddress)
+                    }
+                    if let userDogovor = jsons[xCode][4].string {
+                        tempArray.append(userDogovor)
+                    }
+                    if let userPhone = jsons[xCode][5].string {
+                        tempArray.append(userPhone)
+                    }
                     xCode += 1
                     self.baseArray.append(tempArray)
                     tempArray = [String]()
@@ -116,6 +133,17 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTabViewDelegate
                
             }
         }
+    }
+// --------------------------------------------------------------
+    //отображение информации о заявке на малом окне
+    @objc public func viewInformationTicket(_ sender:AnyObject)
+    {
+        let select = viewTable.selectedRow
+        self.boxFio.stringValue = baseArray[select][1]
+        self.boxAddress.stringValue = baseArray[select][3]
+        self.boxDogovor.stringValue = baseArray[select][4]
+        self.boxPhone.stringValue = baseArray[select][5]
+        self.boxTicket.stringValue = baseArray[select][2]
     }
     
 // --------------------------------------------------------------

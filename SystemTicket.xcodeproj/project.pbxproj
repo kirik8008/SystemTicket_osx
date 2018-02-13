@@ -51,6 +51,11 @@
 		84E0E3DC1FB9B1FE00EAD800 /* podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = podfile; sourceTree = "<group>"; };
 		84E0E3E41FB9B5F900EAD800 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84E0E3E51FB9B5F900EAD800 /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		84EF0C232031894600CA934B /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		84EF0C242031894600CA934B /* SocketIO.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SocketIO.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		84EF0C252031894600CA934B /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		84EF0C262031894600CA934B /* SwiftySound.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftySound.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		84EF0C282031D4B700CA934B /* Sodium.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Sodium.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84F254532010D9BF00E5C8B8 /* viewTicket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = viewTicket.swift; sourceTree = "<group>"; };
 		84F254552010E08D00E5C8B8 /* Artwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artwork.swift; sourceTree = "<group>"; };
 		84F254592011DB3600E5C8B8 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
@@ -72,6 +77,11 @@
 		0F3D9A13D5808C09B9F08966 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				84EF0C282031D4B700CA934B /* Sodium.framework */,
+				84EF0C232031894600CA934B /* Alamofire.framework */,
+				84EF0C242031894600CA934B /* SocketIO.framework */,
+				84EF0C252031894600CA934B /* SwiftyJSON.framework */,
+				84EF0C262031894600CA934B /* SwiftySound.framework */,
 				848C1380202C8D160099B798 /* SocketIO.framework */,
 				848C1381202C8D160099B798 /* SwiftySound.framework */,
 				84E0E3E41FB9B5F900EAD800 /* Alamofire.framework */,
@@ -268,6 +278,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-SystemTicket/Pods-SystemTicket-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Socket.IO-Client-Swift/SocketIO.framework",
+				"${BUILT_PRODUCTS_DIR}/Sodium/Sodium.framework",
 				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftySound/SwiftySound.framework",
@@ -276,6 +287,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SocketIO.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Sodium.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftySound.framework",
