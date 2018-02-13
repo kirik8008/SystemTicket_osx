@@ -220,7 +220,7 @@ class Messenger: NSViewController, NSTableViewDataSource, NSTableViewDelegate,NS
             Sound.play(file: "Blum", fileExtension: "mp3", numberOfLoops: 0)
             if self.channel.stringValue == "\(data[3])"
             {
-                self.window.string = self.window.string + "\(data[0]) 💬 -> \(data[4]) \n"
+                self.window.string = self.window.string + "\(data[0]) \(data[3]) 💬 -> \(data[4]) \n"
                 self.saveMessage()
             } else
             {
@@ -229,7 +229,7 @@ class Messenger: NSViewController, NSTableViewDataSource, NSTableViewDelegate,NS
                     UserDefaults.standard.set("", forKey: "activeUserChat\(data[2])")
                 }
                 let textInSave = UserDefaults.standard.object(forKey: "activeUserChat\(data[2])") as! String
-                let savingText = textInSave + "\(data[0]) 💬 -> \(data[4]) \n"
+                let savingText = textInSave + "\(data[0]) \(data[3]) 💬 -> \(data[4]) \n"
                 UserDefaults.standard.set(savingText, forKey: "activeUserChat\(data[2])")
                 
             }
