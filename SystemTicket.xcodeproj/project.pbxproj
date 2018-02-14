@@ -15,6 +15,7 @@
 		848C138B202C8E840099B798 /* Keys.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 848C1386202C8E840099B798 /* Keys.mp3 */; };
 		848C138C202C8E840099B798 /* Note.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 848C1387202C8E840099B798 /* Note.mp3 */; };
 		848C138E202C9A7C0099B798 /* NewTicket.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 848C138D202C9A7C0099B798 /* NewTicket.mp3 */; };
+		8496A2072034507200822A0F /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 8496A2062034507200822A0F /* README.md */; };
 		84A2886F201753860047C8CD /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 84A2886E201753860047C8CD /* LICENSE */; };
 		84E0E3CD1FB9B1D000EAD800 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E0E3CC1FB9B1D000EAD800 /* AppDelegate.swift */; };
 		84E0E3CF1FB9B1D000EAD800 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E0E3CE1FB9B1D000EAD800 /* ViewController.swift */; };
@@ -40,6 +41,7 @@
 		848C1386202C8E840099B798 /* Keys.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Keys.mp3; sourceTree = "<group>"; };
 		848C1387202C8E840099B798 /* Note.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Note.mp3; sourceTree = "<group>"; };
 		848C138D202C9A7C0099B798 /* NewTicket.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = NewTicket.mp3; sourceTree = "<group>"; };
+		8496A2062034507200822A0F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		84A2886E201753860047C8CD /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		84E0E3C91FB9B1D000EAD800 /* SystemTicket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SystemTicket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84E0E3CC1FB9B1D000EAD800 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 		84E0E3C01FB9B1D000EAD800 = {
 			isa = PBXGroup;
 			children = (
+				8496A2062034507200822A0F /* README.md */,
 				84A2886E201753860047C8CD /* LICENSE */,
 				84E0E3DC1FB9B1FE00EAD800 /* podfile */,
 				84E0E3CB1FB9B1D000EAD800 /* SystemTicket */,
@@ -247,6 +250,7 @@
 				84E0E3D11FB9B1D000EAD800 /* Assets.xcassets in Resources */,
 				84A2886F201753860047C8CD /* LICENSE in Resources */,
 				848C1389202C8E840099B798 /* Bamboo.mp3 in Resources */,
+				8496A2072034507200822A0F /* README.md in Resources */,
 				84E0E3D41FB9B1D000EAD800 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

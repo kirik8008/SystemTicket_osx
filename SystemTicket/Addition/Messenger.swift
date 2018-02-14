@@ -11,6 +11,7 @@ import SwiftyJSON
 import SwiftySound
 import SocketIO
 import Sodium
+import SystemConfiguration
 
 extension String {
     func toData() -> Data? {
@@ -55,7 +56,6 @@ class Messenger: NSViewController, NSTableViewDataSource, NSTableViewDelegate,NS
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         if UserDefaults.standard.object(forKey: "authentication") != nil
         {
         if UserDefaults.standard.object(forKey: "ipMessanger") == nil
@@ -86,6 +86,7 @@ class Messenger: NSViewController, NSTableViewDataSource, NSTableViewDelegate,NS
             
             
             socket.on("message") {data, ack in
+                if data.count == 6 {
                 /* Получение сообщения:
                  |0: Дата и время |1:получатель |2:отправитель |3:имя отправителя |4: зашифрованное сообщение |5: публичный ключ|
                 */
@@ -94,6 +95,7 @@ class Messenger: NSViewController, NSTableViewDataSource, NSTableViewDelegate,NS
                 let text = self.decryptionMessage(encryptedMessage: encryptionText, publicSendKey: sendpublickey) // получаем текст
                 let objData = [data[0] as! String, data[1], data[2],data[3] as! String, text] // собираем массив
                 self.message(data:objData) // передаем в обработчик
+                }
             }
             
             //получение публичного ключа
@@ -127,9 +129,8 @@ class Messenger: NSViewController, NSTableViewDataSource, NSTableViewDelegate,NS
         }
         socket.connect()
         _ = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.cleanInformation), userInfo: nil, repeats: true)
-            
         } else { window.string = "Вы не прошли процедуру ау­тен­ти­фи­ка­ции, в связи с чем вам будут недоступны некоторые функции. Выполните вход в акаунт СистемыЗаявок сейчас, открыв Настройки и раздел Аутентификация. При успешной Аутентификации перезагрузите приложение!" }
-
+        
     }
     
 //--------------------------------------------------------------
@@ -152,9 +153,8 @@ class Messenger: NSViewController, NSTableViewDataSource, NSTableViewDelegate,NS
         let message = text.data(using:.utf8)!
         let encryptedMessage: Data =
             sodium.box.seal(message: message,
-                            recipientPublicKey: self.publicKey as! Box.PublicKey, // выбираем полученный публичный ключ
+                            recipientPublicKey: self.publicKey as! Box.PublicKey,
                             senderSecretKey: KeyPair.secretKey)!
-
        let messagess = [dateTimeFunc(),UserDefaults.standard.object(forKey: "activeChat"),UserDefaults.standard.object(forKey: "id"),UserDefaults.standard.object(forKey: "fio"),encryptedMessage,KeyPair.publicKey]
         socket.emit("message", messagess)
     }
@@ -163,13 +163,12 @@ class Messenger: NSViewController, NSTableViewDataSource, NSTableViewDelegate,NS
     //шифрование
     public func decryptionMessage(encryptedMessage: Data, publicSendKey:Data) -> String
     {
-        
         let messageVerified =
             sodium.box.open(nonceAndAuthenticatedCipherText: encryptedMessage,
                             senderPublicKey: publicSendKey,
                             recipientSecretKey: KeyPair.secretKey)
-        let result = messageVerified!.toString() as! String
-        return result
+        let result = messageVerified!.toString()
+        return result!
     }
     
 //--------------------------------------------------------------
@@ -188,7 +187,6 @@ class Messenger: NSViewController, NSTableViewDataSource, NSTableViewDelegate,NS
         {
             self.informationString.stringValue = "\(data[1]) печатает..."
         }
-
     }
     
 //--------------------------------------------------------------
