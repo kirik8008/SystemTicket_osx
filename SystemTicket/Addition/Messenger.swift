@@ -64,6 +64,7 @@ class Messenger: NSViewController, NSTableViewDataSource, NSTableViewDelegate,NS
             window.string = "Мессенджер ожидает правильных настроек! Зайди в настройки и укажи правильный сервер и перезагрузи приложение!"
         }
         manager = SocketManager(socketURL: URL(string: "http://\(UserDefaults.standard.object(forKey: "ipMessanger") as! String)")!, config: [.log(true), .compress])
+        var idMessage = ""
         usersActive.target = self
         usersActive.action = #selector(userSelection(_:))
         UserDefaults.standard.set("", forKey: "idSocket")
@@ -86,15 +87,19 @@ class Messenger: NSViewController, NSTableViewDataSource, NSTableViewDelegate,NS
             
             
             socket.on("message") {data, ack in
-                if data.count == 6 {
+                if data.count == 7 {
                 /* Получение сообщения:
-                 |0: Дата и время |1:получатель |2:отправитель |3:имя отправителя |4: зашифрованное сообщение |5: публичный ключ|
+                     |0: Дата и время |1:получатель |2:отправитель |3:имя отправителя |4: зашифрованное сообщение |5: публичный ключ|6: id
                 */
-                let encryptionText:Data = data[4] as! Data
-                let sendpublickey:Data = data[5] as! Data
-                let text = self.decryptionMessage(encryptedMessage: encryptionText, publicSendKey: sendpublickey) // получаем текст
-                let objData = [data[0] as! String, data[1], data[2],data[3] as! String, text] // собираем массив
-                self.message(data:objData) // передаем в обработчик
+                    if idMessage != "\(data[6])"
+                    {
+                            let encryptionText:Data = data[4] as! Data
+                            let sendpublickey:Data = data[5] as! Data
+                            let text = self.decryptionMessage(encryptedMessage: encryptionText, publicSendKey: sendpublickey) // получаем текст
+                            let objData = [data[0] as! String, data[1], data[2],data[3] as! String, text] // собираем массив
+                            self.message(data:objData) // передаем в обработчик
+                            idMessage = "\(data[6])"
+                    }
                 }
             }
             

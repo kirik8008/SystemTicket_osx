@@ -900,7 +900,6 @@ DQ
                                         </textField>
                                     </subviews>
                                 </view>
-                                <font key="titleFont" metaFont="message" size="11"/>
                             </box>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xbp-Ta-tUt">
                                 <rect key="frame" x="250" y="408" width="530" height="17"/>
@@ -1240,7 +1239,6 @@ DQ
                                         </textField>
                                     </subviews>
                                 </view>
-                                <font key="titleFont" metaFont="message" size="11"/>
                             </box>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7d4-Rc-H81">
                                 <rect key="frame" x="644" y="428" width="138" height="17"/>
@@ -1426,7 +1424,6 @@ DQ
                                                             </textField>
                                                         </subviews>
                                                     </view>
-                                                    <font key="titleFont" metaFont="message" size="11"/>
                                                 </box>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="who-w6-kbJ">
                                                     <rect key="frame" x="15" y="190" width="37" height="17"/>
@@ -1898,7 +1895,7 @@ Gw
                                 </textFieldCell>
                             </textField>
                             <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="86n-rx-TZU">
-                                <rect key="frame" x="0.0" y="479" width="550" height="5"/>
+                                <rect key="frame" x="0.0" y="479" width="550" height="15"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RTC-1W-EbO">
