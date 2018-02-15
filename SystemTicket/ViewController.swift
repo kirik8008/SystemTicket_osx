@@ -10,6 +10,7 @@ import Cocoa
 import Alamofire
 import SwiftyJSON
 import SwiftySound
+import Foundation
 
 class ViewController: NSViewController, NSTableViewDataSource, NSTabViewDelegate {
     //@IBOutlet weak var viewTable: NSTableView!
@@ -28,10 +29,12 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTabViewDelegate
     @IBOutlet weak var boxAddress: NSTextField! //блок адрес
     @IBOutlet weak var boxPhone: NSTextField! //блок телефон
     @IBOutlet weak var boxTicket: NSTextField! //блок текст заявки
+    @IBOutlet weak var SearchText: NSSearchField! // текстовое поле поиска
     
     
     
     var baseArray = [[String]]()
+    var searchArray = [[String]]()
     var timeCheck = 1
     var timerGlobal = 10
     var baseArrayCount = 0 // количество заявок
@@ -53,7 +56,29 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTabViewDelegate
         viewTable.doubleAction = #selector(tableViewDoubleClick(_:))
         viewTable.action = #selector(viewInformationTicket(_:))
         _ = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.check), userInfo: nil, repeats: true)
-        
+        SearchText.target = self
+        SearchText.action = #selector(searchUser(_ :))
+    }
+    
+ // --------------------------------------------------------------
+    // поиск по пользователям в открытых заявках
+    @objc public func searchUser(_ sender:AnyObject)
+    {
+        searchArray = [[String]]()
+        if SearchText.stringValue.isEmpty
+        {
+            searchArray = baseArray
+        }else{
+        for base in baseArray
+        {
+            let strings = base[1]
+            //print(base[1]) string.containsString
+            let ress = strings.contains(SearchText.stringValue)
+            if ress { searchArray.append(base) }
+        }
+        print(searchArray.count)
+        }
+        viewTable.reloadData()
     }
     
 // --------------------------------------------------------------
@@ -126,6 +151,7 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTabViewDelegate
                 }
                if self.baseArray.count != self.baseArrayCount
                 {
+                    self.searchArray = self.baseArray // заносим для отображения
                     self.viewTable.reloadData()
                     Sound.play(file: "NewTicket", fileExtension: "mp3", numberOfLoops: 0)
                     self.baseArrayCount = self.baseArray.count
@@ -139,11 +165,11 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTabViewDelegate
     @objc public func viewInformationTicket(_ sender:AnyObject)
     {
         let select = viewTable.selectedRow
-        self.boxFio.stringValue = baseArray[select][1]
-        self.boxAddress.stringValue = baseArray[select][3]
-        self.boxDogovor.stringValue = baseArray[select][4]
-        self.boxPhone.stringValue = baseArray[select][5]
-        self.boxTicket.stringValue = baseArray[select][2]
+        self.boxFio.stringValue = searchArray[select][1]
+        self.boxAddress.stringValue = searchArray[select][3]
+        self.boxDogovor.stringValue = searchArray[select][4]
+        self.boxPhone.stringValue = searchArray[select][5]
+        self.boxTicket.stringValue = searchArray[select][2]
     }
     
 // --------------------------------------------------------------
@@ -151,7 +177,7 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTabViewDelegate
     public func numberOfRows(in tableView: NSTableView) -> Int
     {
         clickTable.stringValue = String(baseArray.count)
-        return baseArray.count
+        return searchArray.count
     }
 
 // --------------------------------------------------------------
@@ -161,13 +187,13 @@ var hight = -1
     {
         hight += 1
         let cell = hight % 3 // получаем остаток это может быть 0,1 или 2
-        return baseArray[row][cell]
+        return searchArray[row][cell]
     }
     
 // --------------------------------------------------------------
   //двойное нажатие на заявку
     @objc func tableViewDoubleClick(_ sender:AnyObject) {
-        UserDefaults.standard.set(baseArray[viewTable.selectedRow][0], forKey: "idTicket") // запись номера заявки
+        UserDefaults.standard.set(searchArray[viewTable.selectedRow][0], forKey: "idTicket") // запись номера заявки
         performSegue(withIdentifier: NSStoryboardSegue.Identifier(rawValue: "showViewTicket"), sender: self) // открытие окна просмотре заявки
         }
     

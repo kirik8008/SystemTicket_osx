@@ -41,6 +41,7 @@ class Messenger: NSViewController, NSTableViewDataSource, NSTableViewDelegate,NS
     var tableUser = [[String]]() // пользователи активные
     let KeyPair = sodium.box.keyPair()! //мой ключ
     var publicKey:Any = ""
+    var viewcont = ""
     @IBOutlet weak var usersActive: NSTableView! // таблица с сотрудниками
     @IBOutlet weak var sid: NSTextField! // SID соединения
     @IBOutlet weak var userId: NSTextField! // id пользователя
@@ -130,8 +131,21 @@ class Messenger: NSViewController, NSTableViewDataSource, NSTableViewDelegate,NS
         }
         
         socket.on(clientEvent: .ping) { (data, ack) in
+            if UserDefaults.standard.object(forKey: "authentication") == nil
+            {
+                socket.disconnect()
+                UserDefaults.standard.removeObject(forKey: "activeChat")
+                self.window.string = ""
+                self.tableUser = [[String]]()
+                self.usersActive.reloadData()
+            }else{
             socket.emit("pong", [UserDefaults.standard.object(forKey: "id"),UserDefaults.standard.object(forKey: "fio"),UserDefaults.standard.object(forKey: "idSocket")])
+            }
         }
+            
+            socket.on(clientEvent: .disconnect) {(data,ack) in
+                self.sid.stringValue = "Пока пока !"
+            }
         socket.connect()
         _ = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.cleanInformation), userInfo: nil, repeats: true)
         } else { window.string = "Вы не прошли процедуру ау­тен­ти­фи­ка­ции, в связи с чем вам будут недоступны некоторые функции. Выполните вход в акаунт СистемыЗаявок сейчас, открыв Настройки и раздел Аутентификация. При успешной Аутентификации перезагрузите приложение!" }

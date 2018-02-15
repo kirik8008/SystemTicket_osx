@@ -57,7 +57,7 @@ class Settings: NSViewController {
         default:
             UserDefaults.standard.set(10, forKey: "timeupdate")
         }
-        self.infoError.stringValue = "Настройки сохранены! Таблица с заявками скоро обновиться."
+        self.infoError.stringValue = "Настройки сохранены! Приложению требуется перезагрузка."
     }
 // ---------------------------------------------------
     
