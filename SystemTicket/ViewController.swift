@@ -144,6 +144,12 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTabViewDelegate
                     if let userPhone = jsons[xCode][5].string {
                         tempArray.append(userPhone)
                     }
+                    if let location_one = jsons[xCode][6].string {
+                        tempArray.append(location_one)
+                    }
+                    if let location_two = jsons[xCode][7].string {
+                        tempArray.append(location_two)
+                    }
                     xCode += 1
                     self.baseArray.append(tempArray)
                     tempArray = [String]()
@@ -164,13 +170,17 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTabViewDelegate
     //отображение информации о заявке на малом окне
     @objc public func viewInformationTicket(_ sender:AnyObject)
     {
-        let select = viewTable.selectedRow
-        self.boxFio.stringValue = searchArray[select][1]
-        self.boxAddress.stringValue = searchArray[select][3]
-        self.boxDogovor.stringValue = searchArray[select][4]
-        self.boxPhone.stringValue = searchArray[select][5]
-        self.boxTicket.stringValue = searchArray[select][2]
+        if(viewTable.selectedRow >= 0)
+        {
+            let select = viewTable.selectedRow
+            self.boxFio.stringValue = searchArray[select][1]
+            self.boxAddress.stringValue = searchArray[select][3]
+            self.boxDogovor.stringValue = searchArray[select][4]
+            self.boxPhone.stringValue = searchArray[select][5]
+            self.boxTicket.stringValue = searchArray[select][2]
+        }
     }
+        
     
 // --------------------------------------------------------------
  //построение таблицы, подсчет количество заявок и создание такого же количества строк
@@ -193,8 +203,11 @@ var hight = -1
 // --------------------------------------------------------------
   //двойное нажатие на заявку
     @objc func tableViewDoubleClick(_ sender:AnyObject) {
-        UserDefaults.standard.set(searchArray[viewTable.selectedRow][0], forKey: "idTicket") // запись номера заявки
-        performSegue(withIdentifier: NSStoryboardSegue.Identifier(rawValue: "showViewTicket"), sender: self) // открытие окна просмотре заявки
+        if(viewTable.selectedRow >= 0)
+            {
+                UserDefaults.standard.set(searchArray[viewTable.selectedRow][0], forKey: "idTicket") // запись номера заявки
+                performSegue(withIdentifier: NSStoryboardSegue.Identifier(rawValue: "showViewTicket"), sender: self) // открытие окна просмотре заявки
+            }
         }
     
 // --------------------------------------------------------------
@@ -219,7 +232,22 @@ var hight = -1
         self.timeDataOnline.stringValue = dateString
     }
 
-// --------------------------------------------------------------
+    
+    override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
+
+            let quq = DispatchQueue(label: "com.SystemTicket.test")
+            quq.async
+                {
+                    if(segue.identifier?.rawValue == "mapsTickets")
+                    {
+                        let controller: MapsTicket = segue.destinationController as! MapsTicket
+                        //controller.idTicket = "456"
+                        controller.baseArray = self.baseArray
+                    }
+                }
+    }
+    
+    // --------------------------------------------------------------
     
     }
     
