@@ -22,6 +22,7 @@ class Settings: NSViewController {
     @IBOutlet weak var saveSettings: NSButton! // кнопка сохранить
     @IBOutlet weak var updateTicket: NSComboBoxCell! // combobox с временем обновления таблицы
     @IBOutlet weak var messangerServer: NSTextField! // сервер мессенджера
+    let pitka = x99.init()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,9 +67,9 @@ class Settings: NSViewController {
         if UserDefaults.standard.object(forKey: "authentication") == nil
         {
             let params: [String: Any] = [
-                "name": name.stringValue,
-                "surname": surname.stringValue,
-                "pass": pass.stringValue,
+                "name": self.pitka.coding(text: name.stringValue),
+                "surname": self.pitka.coding(text: surname.stringValue),
+                "pass": self.pitka.coding(text: pass.stringValue),
                 "userId": 0
             ]
             Alamofire.request("http://\(UserDefaults.standard.object(forKey: "ipserver") as! String)/alamofire.php?code=authentication", method: .post, parameters: params).responseJSON { response in

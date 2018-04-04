@@ -2,7 +2,7 @@
 
 [![Make a donation to support this project](https://img.shields.io/badge/donate-YandexMoney-orange.svg?style=flat)](https://money.yandex.ru/to/41001242761077)
 
-Program to display the ticket and work with the API CMS "СистемаЗаявок".  And added messenger for users ' communication applications.
+Program to display the ticket and work with the API CMS "SystemTicket".  And added messenger for users ' communication applications.
 
  [ Server IM (Node.js)](https://github.com/kirik8008/imserver) to work messenger
 
@@ -141,3 +141,42 @@ Program to display the ticket and work with the API CMS "СистемаЗаяв�
 "user name" ( array[1] ) - no comments.
 "ticket text" ( array[2] ) - ticket text.
 ```
+
+- **alamofire.php?code=authentication** (Authentication of employee)
+
+String encryption occurs using the library X99 ( [ Swift ](https://github.com/36Lan/x99.swift) |  [ PHP ](https://github.com/36Lan/x99)) - This is a simple library, and encrypts purely from the fool (encrypted with this library, data under threat).
+
+```
+//send
+
+"name" - the encrypted name.
+"surname" - the encrypted surname.
+"pass" - the encrypted password
+"userId" - 0
+
+//PS: since X99 is not very stable library, it must be quite a little rule when decrypted the first character in upper case.
+```
+
+```
+//gets array [key=>value]
+
+If successful, the result will return:
+["error"=>"", "info"=>"", "fio"=>"", "name"=>"", "id"=>"", "login"=>"", "key"=>"", "idconnect"=>""]
+
+In case of an unsuccessful authentication would return:
+["error"=>""]
+
+"error" - for information about authentication.
+"info" - return true or false. if true, the authentication is passed and the "error" will be a welcome message, otherwise "error" is the error message.
+"fio" - the name of the user (surname).
+"name" - user name.
+"id" - employee id.
+"login" - login employee.
+"key" - the hash for the audits of employee (not yet used).
+"idconnect" - Connection ID (not yet used).
+
+```
+
+#### The project uses library:
+[ Alamofire ](https://github.com/Alamofire/Alamofire), [ Socket.IO-Client-Swift ](https://github.com/socketio/socket.io-client-swift), [ Sodium ](https://github.com/jedisct1/swift-sodium), [ SwiftyJSON ](https://github.com/SwiftyJSON/SwiftyJSON), [ SwiftySound ](https://github.com/adamcichy/SwiftySound)
+

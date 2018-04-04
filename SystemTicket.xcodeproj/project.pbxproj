@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		84062A6E1FF22A6500417969 /* newTicket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84062A6D1FF22A6500417969 /* newTicket.swift */; };
+		842EDEC12074F45200BA33A4 /* x99.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842EDEC02074F45200BA33A4 /* x99.swift */; };
+		842EDEC220750D2700BA33A4 /* Pods_SystemTicket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F3F35D1773F12CAD23E8356 /* Pods_SystemTicket.framework */; };
 		848C137D202C8B010099B798 /* Messenger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848C137C202C8B010099B798 /* Messenger.swift */; };
 		848C1388202C8E840099B798 /* Vk.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 848C1383202C8E830099B798 /* Vk.mp3 */; };
 		848C1389202C8E840099B798 /* Bamboo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 848C1384202C8E830099B798 /* Bamboo.mp3 */; };
@@ -26,13 +28,13 @@
 		84F254542010D9BF00E5C8B8 /* viewTicket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F254532010D9BF00E5C8B8 /* viewTicket.swift */; };
 		84F254562010E08D00E5C8B8 /* Artwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F254552010E08D00E5C8B8 /* Artwork.swift */; };
 		84F2545A2011DB3600E5C8B8 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F254592011DB3600E5C8B8 /* Settings.swift */; };
-		EF42FE507368E51478AF9D13 /* Pods_SystemTicket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F3F35D1773F12CAD23E8356 /* Pods_SystemTicket.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		036D3E0C31FBB59834D1EAC0 /* Pods-SystemTicket.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SystemTicket.release.xcconfig"; path = "Pods/Target Support Files/Pods-SystemTicket/Pods-SystemTicket.release.xcconfig"; sourceTree = "<group>"; };
 		1F3F35D1773F12CAD23E8356 /* Pods_SystemTicket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SystemTicket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84062A6D1FF22A6500417969 /* newTicket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newTicket.swift; sourceTree = "<group>"; };
+		842EDEC02074F45200BA33A4 /* x99.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = x99.swift; sourceTree = "<group>"; };
 		848C137C202C8B010099B798 /* Messenger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Messenger.swift; sourceTree = "<group>"; };
 		848C1380202C8D160099B798 /* SocketIO.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SocketIO.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		848C1381202C8D160099B798 /* SwiftySound.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftySound.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,7 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EF42FE507368E51478AF9D13 /* Pods_SystemTicket.framework in Frameworks */,
+				842EDEC220750D2700BA33A4 /* Pods_SystemTicket.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -161,6 +163,7 @@
 				84E0E3D21FB9B1D000EAD800 /* Main.storyboard */,
 				84E0E3D51FB9B1D000EAD800 /* Info.plist */,
 				84E0E3D61FB9B1D000EAD800 /* SystemTicket.entitlements */,
+				842EDEC02074F45200BA33A4 /* x99.swift */,
 			);
 			path = SystemTicket;
 			sourceTree = "<group>";
@@ -336,6 +339,7 @@
 				84E0E3CD1FB9B1D000EAD800 /* AppDelegate.swift in Sources */,
 				84F254542010D9BF00E5C8B8 /* viewTicket.swift in Sources */,
 				84062A6E1FF22A6500417969 /* newTicket.swift in Sources */,
+				842EDEC12074F45200BA33A4 /* x99.swift in Sources */,
 				848C137D202C8B010099B798 /* Messenger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

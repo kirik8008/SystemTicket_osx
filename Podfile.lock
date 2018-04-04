@@ -1,11 +1,11 @@
 PODS:
-  - Alamofire (4.5.1)
-  - Socket.IO-Client-Swift (13.1.1):
+  - Alamofire (4.7.1)
+  - Socket.IO-Client-Swift (13.1.3):
     - Starscream (~> 3.0.2)
   - Sodium (0.6)
   - Starscream (3.0.4)
-  - SwiftyJSON (3.1.4)
-  - SwiftySound (0.7.0)
+  - SwiftyJSON (4.0.0)
+  - SwiftySound (1.0.0)
 
 DEPENDENCIES:
   - Alamofire
@@ -15,12 +15,12 @@ DEPENDENCIES:
   - SwiftySound
 
 SPEC CHECKSUMS:
-  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
-  Socket.IO-Client-Swift: f22222913f29801e30ae0df712db663ec096edc2
+  Alamofire: 68d7d521118d49c615a8d2214d87cdf525599d30
+  Socket.IO-Client-Swift: d30d6fd08a38ad2a182b090936a043bf512ab2de
   Sodium: bf524b0a3d5ad6870dcf343205cca7e659c15ad5
   Starscream: f5da93fe6984c77b694366bf7299b7dc63a76f26
-  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
-  SwiftySound: bca0bb721690fb65249f4776cb0875abd98e9941
+  SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
+  SwiftySound: b9c3370956fd4ed65ed79d45563070077a50a2cd
 
 PODFILE CHECKSUM: 83391ec68ce2e0ef02fcd74df7e36ac21c71a1a4
 
